@@ -1,14 +1,16 @@
 
 function maximizeImpact(tasks, budget) {
     const n = tasks.length;
-    const dp = Array(n + 1).fill(0).map(() => Array(budget + 1).fill(0));
+    const dp = Array(n + 1).fill(0).map(function() { 
+        return Array(budget + 1).fill(0); 
+    });
 
-    for (let i = 1; i <= n; i++) {
-        const task = tasks[i - 1];
-        const weight = task.Duration; 
-        const value = task.Impact;
+    for (var i = 1; i <= n; i++) {
+        var task = tasks[i - 1];
+        var weight = task.Duration;
+        var value = task.Impact;
 
-        for (let w = 1; w <= budget; w++) {
+        for (var w = 1; w <= budget; w++) {
             if (weight <= w) {
                 dp[i][w] = Math.max(dp[i - 1][w], dp[i - 1][w - weight] + value);
             } else {
@@ -16,21 +18,7 @@ function maximizeImpact(tasks, budget) {
             }
         }
     }
-
-    let res = dp[n][budget];
-    let w = budget;
-    const selectedTasks = [];
-
-    for (let i = n; i > 0 && res > 0; i--) {
-        if (res !== dp[i - 1][w]) {
-            const task = tasks[i - 1];
-            selectedTasks.push(task.TaskID); 
-            res -= task.Impact;
-            w -= task.Duration;
-        }
-    }
-
-    return { totalImpact: dp[n][budget], timeUsed: budget - w, tasks: selectedTasks };
+    return { totalImpact: dp[n][budget] };
 }
 
 module.exports = { maximizeImpact };
