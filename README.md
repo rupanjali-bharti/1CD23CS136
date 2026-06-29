@@ -13,13 +13,18 @@ notification-system-design.md: Architectural design documentation covering API c
 2. How to Run
 
 npm install express dotenv
+
 Create a .env file with the required API URLs and tokens.
+
 Start the service:
+
 node server.js
 
 
 3. Key Technologies
 
 Node.js & Express: Used for building the microservices.
+
 Knapsack Algorithm: Used to maximize task impact within mechanic hour constraints.
+
 Middleware Pattern: Implemented for standardized logging.
