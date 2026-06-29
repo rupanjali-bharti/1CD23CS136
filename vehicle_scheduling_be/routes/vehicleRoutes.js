@@ -1,9 +1,7 @@
-
 const express = require('express');
-const controller = require('../controller/vehicleController');
-
 const router = express.Router();
+const { handleMaintenanceSchedule } = require('../controller/vehicleController');
 
-router.get('/generate-schedule', controller.handleMaintenanceSchedule);
+router.get('/generate-schedule', handleMaintenanceSchedule);
 
 module.exports = router;
